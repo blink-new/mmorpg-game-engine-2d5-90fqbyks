@@ -3,14 +3,15 @@ import { GameEngine } from './components/GameEngine'
 import { VisualEditor } from './components/VisualEditor'
 import { AssetManager } from './components/AssetManager'
 import { WorldBuilder } from './components/WorldBuilder'
+import { DiabloMMO } from './components/DiabloMMO'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs'
 import { Button } from './components/ui/button'
-import { Play, Pause, Settings, Save, Download } from 'lucide-react'
+import { Play, Pause, Settings, Save, Download, Gamepad2 } from 'lucide-react'
 import './App.css'
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [activeTab, setActiveTab] = useState('engine')
+  const [activeTab, setActiveTab] = useState('diablo')
 
   const handlePlayPause = () => {
     setIsPlaying(!isPlaying)
@@ -67,7 +68,11 @@ function App() {
       {/* Main Content */}
       <div className="flex h-[calc(100vh-73px)]">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
-          <TabsList className="grid w-full grid-cols-4 bg-card/50 border-b">
+          <TabsList className="grid w-full grid-cols-5 bg-card/50 border-b">
+            <TabsTrigger value="diablo" className="data-[state=active]:bg-primary/20">
+              <Gamepad2 className="w-4 h-4 mr-2" />
+              Diablo MMO
+            </TabsTrigger>
             <TabsTrigger value="engine" className="data-[state=active]:bg-primary/20">
               Game Engine
             </TabsTrigger>
@@ -83,6 +88,10 @@ function App() {
           </TabsList>
 
           <div className="flex-1 overflow-hidden">
+            <TabsContent value="diablo" className="h-full m-0">
+              <DiabloMMO />
+            </TabsContent>
+            
             <TabsContent value="engine" className="h-full m-0">
               <GameEngine isPlaying={isPlaying} />
             </TabsContent>
