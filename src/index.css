@@ -49,6 +49,9 @@
   .game-viewport {
     background: radial-gradient(ellipse at center, hsl(var(--primary) / 10%) 0%, hsl(var(--background)) 70%);
     border: 1px solid hsl(var(--border));
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
   }
   
   .editor-panel {
@@ -79,5 +82,181 @@
     background: hsl(var(--card) / 70%);
     backdrop-filter: blur(12px);
     border: 1px solid hsl(var(--border) / 50%);
+  }
+  
+  /* Enhanced Game Engine Styles */
+  .biome-forest {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  }
+  
+  .biome-desert {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  }
+  
+  .biome-mountains {
+    background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
+  }
+  
+  .biome-ocean {
+    background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+  }
+  
+  .biome-tundra {
+    background: linear-gradient(135deg, #E5E7EB 0%, #D1D5DB 100%);
+  }
+  
+  .biome-volcanic {
+    background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+  }
+  
+  .character-animation {
+    animation: characterBob 2s ease-in-out infinite;
+  }
+  
+  @keyframes characterBob {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-2px); }
+  }
+  
+  .health-bar {
+    background: linear-gradient(90deg, #DC2626 0%, #F59E0B 50%, #10B981 100%);
+    background-size: 300% 100%;
+    animation: healthGradient 3s ease infinite;
+  }
+  
+  @keyframes healthGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  .rarity-common { @apply border-gray-400 text-gray-400; }
+  .rarity-uncommon { @apply border-green-400 text-green-400; }
+  .rarity-rare { @apply border-blue-400 text-blue-400; }
+  .rarity-epic { @apply border-purple-400 text-purple-400; }
+  .rarity-legendary { @apply border-yellow-400 text-yellow-400; }
+  .rarity-mythic { @apply border-red-400 text-red-400; }
+  
+  .skill-active { @apply bg-blue-500/20 border-blue-500; }
+  .skill-passive { @apply bg-green-500/20 border-green-500; }
+  .skill-ultimate { @apply bg-red-500/20 border-red-500; }
+  
+  .faction-ally { @apply bg-green-500/20 text-green-400; }
+  .faction-neutral { @apply bg-gray-500/20 text-gray-400; }
+  .faction-enemy { @apply bg-red-500/20 text-red-400; }
+  .faction-war { @apply bg-red-600/30 text-red-300; }
+  
+  .world-layer {
+    transition: opacity 0.3s ease;
+  }
+  
+  .selection-highlight {
+    animation: selectionPulse 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes selectionPulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.4; }
+  }
+  
+  .camera-smooth {
+    transition: transform 0.1s ease-out;
+  }
+  
+  .biome-pattern {
+    opacity: 0.3;
+    mix-blend-mode: multiply;
+  }
+  
+  .pet-loyalty-high { @apply text-green-400; }
+  .pet-loyalty-medium { @apply text-yellow-400; }
+  .pet-loyalty-low { @apply text-red-400; }
+  
+  .guild-rank-master { @apply bg-yellow-500/20 border-yellow-500; }
+  .guild-rank-officer { @apply bg-purple-500/20 border-purple-500; }
+  .guild-rank-member { @apply bg-blue-500/20 border-blue-500; }
+  .guild-rank-initiate { @apply bg-gray-500/20 border-gray-500; }
+  
+  .housing-defense-high { @apply text-green-400; }
+  .housing-defense-medium { @apply text-yellow-400; }
+  .housing-defense-low { @apply text-red-400; }
+  
+  .stat-bar {
+    background: linear-gradient(90deg, 
+      #DC2626 0%, 
+      #F59E0B 25%, 
+      #10B981 50%, 
+      #3B82F6 75%, 
+      #8B5CF6 100%
+    );
+    background-size: 100% 100%;
+  }
+  
+  .world-minimap {
+    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+  }
+  
+  .isometric-diamond {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  
+  .game-object-shadow {
+    filter: blur(2px);
+    opacity: 0.3;
+  }
+  
+  .ui-overlay {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+  }
+  
+  .tool-active {
+    @apply bg-primary text-primary-foreground shadow-lg;
+  }
+  
+  .layer-visible {
+    @apply opacity-100;
+  }
+  
+  .layer-hidden {
+    @apply opacity-0 pointer-events-none;
+  }
+  
+  .region-selected {
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+  
+  .biome-selector {
+    transition: all 0.2s ease;
+  }
+  
+  .biome-selector:hover {
+    transform: scale(1.05);
+  }
+  
+  .character-class-card {
+    transition: all 0.3s ease;
+  }
+  
+  .character-class-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
+  }
+  
+  .skill-cooldown {
+    animation: cooldownSpin 1s linear infinite;
+  }
+  
+  @keyframes cooldownSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .mana-pulse {
+    animation: manaPulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes manaPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
   }
 }
